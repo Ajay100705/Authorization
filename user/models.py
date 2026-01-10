@@ -17,8 +17,10 @@ class CustomUser(AbstractUser):
     user_type = models.CharField(max_length=20,choices=USER_TYPE, default='student')
     phone = models.CharField(max_length=20, null=True, blank=True)
     user_id = models.CharField(max_length=100, unique=True, null=True, blank=True)
-    created_at = models.DateTimeField(auto_created=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    
 
     def __str__(self):
         return f" {self.user_id} - {self.get_full_name()} )"

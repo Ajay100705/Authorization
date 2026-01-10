@@ -17,6 +17,14 @@
       {{ request.user.first_name }} ({{ request.user.user_type }})
     </span>
     <button class="btn btn-outline-secondary btn-sm" onclick="toggleTheme()">🌗</button>
+
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-danger btn-sm">
+        Logout
+      </button>
+    </form>
+    
   </div>
 </nav>
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import RegistrationForm, LoginForm
 
 def Signup_view(request):
@@ -9,7 +10,7 @@ def Signup_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('login')
     else:
         form = RegistrationForm()
     return render (request, 'signup.html', {'form' : form})
@@ -32,6 +33,13 @@ def Login_view(request):
         form = LoginForm()
         
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Logged out successfully")
+    return redirect('login')
+
 
 @login_required
 def dashboard_redirect_view(request):

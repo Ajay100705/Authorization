@@ -10,8 +10,20 @@
 
 <button class="btn btn-outline-secondary position-absolute top-0 end-0 m-3"
         onclick="toggleTheme()">🌗</button>
+<div class="position-absolute top-0 start-50 translate-middle-x mt-4" style="width: 400px;">
+  
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} text-center shadow-sm">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
 
-{% block content %}{% endblock %}
+{% block content %}
+
+{% endblock %}
 
 <script>
 function toggleTheme() {
@@ -21,6 +33,9 @@ function toggleTheme() {
     html.getAttribute("data-bs-theme") === "light" ? "dark" : "light"
   );
 }
+setTimeout(() => {
+  document.querySelectorAll('.alert').forEach(el => el.remove());
+}, 1000);
 </script>
 </body>
 </html>
