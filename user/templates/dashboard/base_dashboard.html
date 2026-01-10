@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg border-bottom px-4">
+  <span class="navbar-brand fw-bold">My Dashboard</span>
+
+  <div class="ms-auto d-flex gap-2">
+    <span class="me-3">
+      {{ request.user.first_name }} ({{ request.user.user_type }})
+    </span>
+    <button class="btn btn-outline-secondary btn-sm" onclick="toggleTheme()">🌗</button>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  {% block content %}{% endblock %}
+</div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  html.setAttribute(
+    "data-bs-theme",
+    html.getAttribute("data-bs-theme") === "light" ? "dark" : "light"
+  );
+}
+</script>
+</body>
+</html>

@@ -9,7 +9,8 @@ class CustomUser(AbstractUser):
     USER_TYPE = (
         ('student' , 'student'),
         ('teacher' , 'teacher'),
-        ('admin' , 'admin')
+        ('admin' , 'admin'),
+        ('guest' , 'guest'),
     )
     
     id = models.UUIDField(default=uuid4, primary_key=True, null=False, blank=False, unique=True, editable=False)

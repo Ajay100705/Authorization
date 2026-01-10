@@ -58,6 +58,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "Authorization.wsgi.application"
 AUTH_USER_MODEL = "user.CustomUser"
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'user.backends.UsernameOrUserIDBackend',
+]
+LOGIN_URL = 'login'
+
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
